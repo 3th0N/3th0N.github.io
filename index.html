@@ -53,7 +53,9 @@ section.entry:nth-of-type(even) .media{order:2}
 .media video,.media img{display:block;width:100%;max-width:100%;height:auto;background:var(--sheet);border:1px solid var(--rule)}
 .media.portrait figure{max-width:340px}
 .media.pair figure{max-width:280px}
-.media figure.schematic{max-width:476px}
+.media.stack{flex-direction:column;align-items:stretch;gap:20px}
+.media.stack figure{flex:none}
+.media figure.schematic{max-width:100%}
 .schematic img{background:#fff}
 figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:8px}
 
@@ -101,19 +103,25 @@ html{scroll-behavior:smooth}
   </nav>
 
   <section class="entry" id="cv-car">
-    <div class="media">
+    <div class="media stack">
       <figure>
         <video src="media/cv-car.mp4" poster="media/cv-car.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
         <figcaption>Car completing laps of the track on its own</figcaption>
+      </figure>
+      <figure class="diagram">
+        <img src="media/cv-car-wiring.png" alt="Wiring diagram: Radxa ROCK 5C, PWM I2C bridge, two motor drivers, four DC gear motors, XT60 battery lead and a DC-DC converter" loading="lazy">
+        <figcaption>Wiring: compute board, PWM bridge, motor drivers and power</figcaption>
       </figure>
     </div>
     <div class="spec">
       <div class="tag"><span class="no">01</span> Robotics · Computer vision</div>
       <h2>Autonomous Vision-Guided Car</h2>
-      <p>A small robot car that drives a taped track with no remote control. An onboard camera reads the lane markings, and the car turns that image into steering decisions in real time to stay on course around the loop.</p>
+      <p>A four-wheel robot car that drives a taped track with no remote control. A camera on the car reads the lane markings, and a Radxa ROCK 5C turns each frame into steering decisions in real time, sending motor commands through an I²C PWM board to two motor drivers.</p>
       <dl class="sheet">
         <dt>Focus</dt><dd>Camera-based lane following, closed-loop steering</dd>
-        <dt>Platform</dt><dd>Small-scale robot car on a scale road course</dd>
+        <dt>Compute</dt><dd>Radxa ROCK 5C single-board computer</dd>
+        <dt>Drive</dt><dd>Four DC gear motors on two H-bridge motor drivers, commanded through a PWM board over I²C</dd>
+        <dt>Power</dt><dd>Battery through an XT60 lead, DC-DC converter set to 5.2&nbsp;V for the computer</dd>
         <dt>Result</dt><dd>Continuous laps of the track without intervention</dd>
       </dl>
     </div>
@@ -171,10 +179,11 @@ html{scroll-behavior:smooth}
     <div class="spec">
       <div class="tag"><span class="no">04</span> Computer architecture · Simulation</div>
       <h2>RISC-V CPU in Logisim</h2>
-      <p>A RISC-V processor built gate by gate in Logisim. A program counter, instruction register, general registers, ALU and RAM all share a common bus, with control logic sequencing each instruction. A clock with manual stepping and a program mode make it possible to load code and watch every instruction move through the datapath.</p>
+      <p>A RISC-V processor built gate by gate in Logisim. A program counter, memory address register, RAM, instruction register, registers A and B, an ALU and an output register all share one bus. A step counter and an opcode ROM generate the control signals for each instruction, one micro-step at a time. Program mode and a manual clock let me enter code into RAM by hand and single-step through it.</p>
       <dl class="sheet">
-        <dt>Focus</dt><dd>Datapath and control design, instruction sequencing</dd>
-        <dt>Blocks</dt><dd>PC, instruction register, registers A and B, ALU with zero flag, RAM, output register</dd>
+        <dt>Focus</dt><dd>Datapath and control design, microcoded instruction sequencing</dd>
+        <dt>Datapath</dt><dd>PC, MAR, RAM, instruction register, registers A and B, ALU with add and subtract, output register on BCD displays</dd>
+        <dt>Control</dt><dd>Step counter (T0–T4), opcode ROM, carry and zero flags for conditional jumps</dd>
         <dt>Tool</dt><dd>Logisim</dd>
       </dl>
     </div>

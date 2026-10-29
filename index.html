@@ -53,6 +53,8 @@ section.entry:nth-of-type(even) .media{order:2}
 .media video,.media img{display:block;width:100%;max-width:100%;height:auto;background:var(--sheet);border:1px solid var(--rule)}
 .media.portrait figure{max-width:340px}
 .media.pair figure{max-width:280px}
+.media figure.schematic{max-width:476px}
+.schematic img{background:#fff}
 figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:8px}
 
 .spec{min-width:0;align-self:center}
@@ -93,8 +95,9 @@ html{scroll-behavior:smooth}
     <a href="#cv-car"><i>01</i>Vision-guided car</a>
     <a href="#watch-car"><i>02</i>Smartwatch car</a>
     <a href="#fpga-cpu"><i>03</i>FPGA CPU</a>
-    <a href="#toll"><i>04</i>RFID toll gate</a>
-    <a href="#adder"><i>05</i>4-bit adder</a>
+    <a href="#logisim-cpu"><i>04</i>Logisim CPU</a>
+    <a href="#toll"><i>05</i>RFID toll gate</a>
+    <a href="#adder"><i>06</i>4-bit adder</a>
   </nav>
 
   <section class="entry" id="cv-car">
@@ -158,6 +161,25 @@ html{scroll-behavior:smooth}
     </div>
   </section>
 
+  <section class="entry" id="logisim-cpu">
+    <div class="media">
+      <figure class="schematic">
+        <img src="media/logisim-cpu.png" alt="Logisim schematic of the CPU: program counter, registers, ALU, RAM, control logic and output displays on a shared bus" loading="lazy">
+        <figcaption>Full CPU schematic in Logisim</figcaption>
+      </figure>
+    </div>
+    <div class="spec">
+      <div class="tag"><span class="no">04</span> Computer architecture · Simulation</div>
+      <h2>RISC-V CPU in Logisim</h2>
+      <p>A RISC-V processor built gate by gate in Logisim. A program counter, instruction register, general registers, ALU and RAM all share a common bus, with control logic sequencing each instruction. A clock with manual stepping and a program mode make it possible to load code and watch every instruction move through the datapath.</p>
+      <dl class="sheet">
+        <dt>Focus</dt><dd>Datapath and control design, instruction sequencing</dd>
+        <dt>Blocks</dt><dd>PC, instruction register, registers A and B, ALU with zero flag, RAM, output register</dd>
+        <dt>Tool</dt><dd>Logisim</dd>
+      </dl>
+    </div>
+  </section>
+
   <section class="entry" id="toll">
     <div class="media portrait">
       <figure>
@@ -166,7 +188,7 @@ html{scroll-behavior:smooth}
       </figure>
     </div>
     <div class="spec">
-      <div class="tag"><span class="no">04</span> Embedded · RFID</div>
+      <div class="tag"><span class="no">05</span> Embedded · RFID</div>
       <h2>RFID Toll Gate</h2>
       <p>A working model of an electronic toll lane. When a "vehicle" carrying an RFID tag reaches the reader, the microcontroller checks the tag and drives a servo that raises the gate arm, then lowers it again.</p>
       <dl class="sheet">
@@ -185,7 +207,7 @@ html{scroll-behavior:smooth}
       </figure>
     </div>
     <div class="spec">
-      <div class="tag"><span class="no">05</span> Digital logic · Breadboard</div>
+      <div class="tag"><span class="no">06</span> Digital logic · Breadboard</div>
       <h2>4-Bit Binary Adder</h2>
       <p>Two 4-bit numbers added in hardware. The circuit is wired by hand on a breadboard, with the result shown in binary on four LEDs and a fifth LED lit when the sum overflows into a carry.</p>
       <dl class="sheet">
